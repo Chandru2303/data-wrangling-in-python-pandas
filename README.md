@@ -1,13 +1,11 @@
-# Data-Wrangling-in-Python-Pandas
-
-Here's the GitHub README-style format for documenting Data Wrangling in Python with Pandas. You can copy-paste this directly into a README.md file on your GitHub repo:
+ Here's your Data Wrangling in Python with Pandas content in proper GitHub-flavored markdown, just like the format used in your repo:
 
 markdown
 Copy
 Edit
 # 🧹 Data Wrangling in Python using Pandas
 
-Data wrangling (also called data munging) is the process of cleaning, transforming, and preparing raw data for analysis. This guide covers key operations using the **Pandas** library in Python.
+Data wrangling (or data munging) is the process of cleaning and transforming raw data into a usable format for analysis. This guide covers common techniques using the **Pandas** library in Python.
 
 ---
 
@@ -21,65 +19,68 @@ df = pd.read_csv('data.csv')
 
 # Load from Excel
 df = pd.read_excel('data.xlsx')
+
+# Load from SQL
+# df = pd.read_sql(query, connection)
 🔍 2. Exploring & Cleaning Data
-View Data
+Viewing Data
 python
 Copy
 Edit
 df.head()          # First 5 rows
 df.tail()          # Last 5 rows
-df.info()          # Column types & non-nulls
+df.info()          # Column info & missing values
 df.describe()      # Summary statistics
 df.columns         # Column names
 df.shape           # (rows, columns)
-Rename Columns
+Renaming Columns
 python
 Copy
 Edit
 df.rename(columns={'OldName': 'NewName'}, inplace=True)
-Drop Columns or Rows
+Dropping Columns or Rows
 python
 Copy
 Edit
 df.drop(['Col1', 'Col2'], axis=1, inplace=True)  # Drop columns
 df.drop([0, 1], axis=0, inplace=True)            # Drop rows
-Handle Missing Values
+Handling Missing Values
 python
 Copy
 Edit
-df.isnull().sum()                      # Check nulls
-df.dropna(inplace=True)                # Drop rows with any null
-df.fillna(0, inplace=True)             # Fill nulls with 0
+df.isnull().sum()                               # Check nulls
+df.dropna(inplace=True)                         # Drop rows with nulls
+df.fillna(0, inplace=True)                      # Fill with 0
 df['col'].fillna(df['col'].mean(), inplace=True)  # Fill with mean
 🔄 3. Transforming Data
-Change Data Types
+Changing Data Types
 python
 Copy
 Edit
 df['col'] = df['col'].astype('int')
-Replace Values
+Replacing Values
 python
 Copy
 Edit
 df['gender'].replace({'M': 'Male', 'F': 'Female'}, inplace=True)
-Apply Functions
+Applying Functions
 python
 Copy
 Edit
 df['price_with_tax'] = df['price'].apply(lambda x: x * 1.18)
 📊 4. Filtering & Sorting
-Filter Rows
+Filtering Rows
 python
 Copy
 Edit
 df[df['age'] > 25]
 df[(df['age'] > 25) & (df['gender'] == 'Male')]
-Sort Data
+Sorting Data
 python
 Copy
 Edit
 df.sort_values(by='age', ascending=False)
-🔢 5. Grouping & Aggregation
+🔢 5. Grouping & Aggregating
 python
 Copy
 Edit
@@ -89,12 +90,12 @@ df.groupby(['region', 'product']).agg({'sales': 'sum', 'quantity': 'mean'})
 python
 Copy
 Edit
-# Merge on common column
+# Merge on a common key
 pd.merge(df1, df2, on='id', how='inner')  # Options: inner, outer, left, right
 
 # Concatenate vertically or horizontally
-pd.concat([df1, df2], axis=0)  # Stack rows
-pd.concat([df1, df2], axis=1)  # Combine columns
+pd.concat([df1, df2], axis=0)  # Rows
+pd.concat([df1, df2], axis=1)  # Columns
 🧹 7. Removing Duplicates
 python
 Copy
@@ -116,18 +117,7 @@ df.dropna(subset=['price'], inplace=True)
 df['price'] = df['price'].astype(float)
 df['total'] = df['price'] * df['quantity']
 df.groupby('region')['total'].sum().sort_values(ascending=False)
-✅ Key Takeaways
-Use .info() and .describe() to understand your data quickly.
-
-Handle missing values early.
-
-Use groupby() and aggregation to get insights.
-
-Transform your data with .apply() and .astype().
-
-Always validate your changes before proceeding to analysis or modeling.
-
-📁 Requirements
+✅ Requirements
 Python 3.x
 
 pandas
@@ -136,12 +126,8 @@ bash
 Copy
 Edit
 pip install pandas
-Feel free to fork this and add your own examples or notebooks! 🚀
+📚 Resources
+Pandas Documentation
 
-yaml
-Copy
-Edit
+Python for Data Analysis by Wes McKinney
 
----
-
-Let me know if you'd like me to create a Jupyter Notebook version of this too, or help you push it to GitHub.
